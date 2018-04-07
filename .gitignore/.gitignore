@@ -1,0 +1,46 @@
+// require the package
+const Fortnite = require('fortnite');
+const client = new Fortnite('d47cabcd-8e89-4df9-9f37-2ccde68f5d42');
+client.getInfo('winterkz-', 'pc').then(data => console.log(data));
+
+module.exports.run= async (botnp, message, args) => {
+
+    //!fortnite winterkz- pc
+    let username = args[0];
+    let username = args[1] || "pc";
+
+    let data = ft.getinfo (username, platform).then(data => {
+
+        let stats = data.lifetimeStats;
+        let kill = stats.fine(s =>s.stat = "kill");
+        let wins = stats.fine(s =>s.stat = "wins");
+        let kd = stats.fine(s =>s.stat = "kd");
+        let mPlayed = stats.fine(s =>s.stat = "matchesPlayed");
+        let tPlayed = stats.fine(s =>s.stat = "timePlayed");
+
+
+        let = new Discord.RichEmbed()
+        .setTitle("Fortnite tracker")
+        .setAuthor(data.username)
+        .addField("Kills", kills.value, true)
+        .addField("Wins", wins.value, true)
+        .addField("KD", kd.value, true)
+        .addField("mPlayed", matchesPlayed.value, true)
+        .addField("tPlayed", timePlayed.value, true)
+        
+
+        message.channel.send(embed);
+        
+
+        })catch (e  => {
+           console.log (e);
+        message.channel.send("Couldn't find any username found in the database");
+    }
+
+
+
+}
+
+module.exports.help = {
+    name: "fortnite"
+}
